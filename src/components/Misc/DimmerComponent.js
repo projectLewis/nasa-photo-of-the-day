@@ -9,7 +9,12 @@ const DimmerComponent = () => {
 
   return (
     <div>
-      <Button icon="plus" labelPosition="left" onClick={handleOpen} />
+      <Button
+        icon="minus"
+        content="No"
+        labelPosition="left"
+        onClick={handleOpen}
+      />
 
       <Dimmer active={status} onClickOutside={handleClose} page>
         <Header as="h2" icon inverted>
