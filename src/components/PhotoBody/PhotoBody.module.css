@@ -1,6 +1,6 @@
 .playerWrapper {
   position: relative;
-  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+  padding-top: 56.25%;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -14,6 +14,6 @@
 }
 
 .NASAimage {
-  height: 500px;
-  width: 666.67px;
+  max-height: 80vh;
+  max-width: 100vw;
 }

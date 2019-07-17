@@ -7,6 +7,7 @@ import NASAdesc from "../NASAdescription/NASAdesc";
 import ReactLoading from "react-loading";
 // styles
 import style from "./Placeholder.module.css";
+import DimmerComponent from "../Misc/DimmerComponent";
 
 const Placeholder = () => {
   const [url, setURL] = useState("");
@@ -39,6 +40,7 @@ const Placeholder = () => {
   if (title) {
     return (
       <div className={style.placeholderContainer}>
+        <DimmerComponent />
         <PhotoBody url={url} mediaType={mediaType} />
         <NASAdesc
           title={title}
