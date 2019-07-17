@@ -1,0 +1,11 @@
+.placeholderContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import PhotoBody from "./components/PhotoBody/PhotoBody";
+import Placeholder from "./components/Placeholder/Placeholder";
 
 function App() {
   return (
     <div className="App">
-      <PhotoBody></PhotoBody>
+      <Placeholder />
     </div>
   );
 }
