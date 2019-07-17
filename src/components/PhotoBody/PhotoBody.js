@@ -11,14 +11,14 @@ const PhotoBody = ({ mediaType, url, title }) => {
         <ReactPlayer
           className={style.reactPlayer}
           url={url}
-          width="80%"
-          height="80%"
+          width="100%"
+          height="100%"
         />
       </div>
     );
   } else if (mediaType === "image") {
     return (
-      <div>
+      <div className={style.NASAimage}>
         <img src={url} alt={title} />
       </div>
     );
