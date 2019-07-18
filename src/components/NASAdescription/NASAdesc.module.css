@@ -1,0 +1,8 @@
+.descriptionContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  color: white;
+  padding: 0 40px;
+  background-color: black;
+}
