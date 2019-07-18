@@ -5,23 +5,27 @@ import style from "./SearchButtons.module.css";
 
 let counter = 0;
 
-const SearchButtons = ({ getNASAData }) => {
+const SearchButtons = ({ getNASAdata }) => {
   const handlePrevious = () => {
+    console.log("left1 " + counter);
     counter -= 1;
     const now = new Date();
     const yesterday = date.addDays(now, counter);
-    const dateFormated = date.format(yesterday, "YYYY-MM-DD");
-
-    getNASAData(dateFormated);
+    const dateFormatted = date.format(yesterday, "YYYY-MM-DD");
+    getNASAdata(dateFormatted);
+    console.log("left2 " + counter);
   };
-  const handleNext = ({ getNASAData }) => {
-    if (counter <= 0) {
-      counter += 1;
-      const now = new Date();
-      const tomorrow = date.addDays(now, counter);
-      const dateFormated = date.format(tomorrow, "YYYY-MM-DD");
-      getNASAData(dateFormated);
+  const handleNext = () => {
+    console.log("right" + counter);
+    counter += 1;
+    const now = new Date();
+    const yesterday = date.addDays(now, counter);
+    const dateFormatted = date.format(yesterday, "YYYY-MM-DD");
+    getNASAdata(dateFormatted);
+    if (counter > 0) {
+      counter = 0;
     }
+    console.log("right" + counter);
   };
 
   return (
@@ -39,21 +43,20 @@ const SearchButtons = ({ getNASAData }) => {
         <Icon name="left arrow" />
         Previous
       </Button>
-      {counter < 0 ? (
-        <Button
-          style={{
-            borderRadius: "15px",
-            backgroundColor: "burlywood",
-            margin: "5px 25px 10px 25px"
-          }}
-          onClick={handleNext}
-          icon
-          labelPosition="right"
-        >
-          Next
-          <Icon name="right arrow" />
-        </Button>
-      ) : null}
+      <Button
+        disabled={counter === 0 && true}
+        style={{
+          borderRadius: "15px",
+          backgroundColor: "burlywood",
+          margin: "5px 25px 10px 25px"
+        }}
+        onClick={handleNext}
+        icon
+        labelPosition="right"
+      >
+        Next
+        <Icon name="right arrow" />
+      </Button>
     </div>
   );
 };

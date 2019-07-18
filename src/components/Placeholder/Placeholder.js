@@ -62,7 +62,7 @@ const Placeholder = () => {
       <div className={style.placeholderContainer}>
         <PhotoBody url={url} mediaType={mediaType} />
         <TitleText title={title} />
-        <SearchButtons getNASAData={getNASAdata} />
+        <SearchButtons getNASAdata={getNASAdata} />
         <NASAdesc description={description} mediaType={mediaType} />
       </div>
     );
