@@ -20,7 +20,7 @@ const Placeholder = () => {
   useEffect(() => {
     getNASAdata();
     document.title = dateOfAPOD ? dateOfAPOD : "SPACE is AWESOME";
-  }, [dateOfAPOD]);
+  });
 
   const APODurl =
     "https://api.nasa.gov/planetary/apod?api_key=6PVgasbJQ3KR2UdWAoAPfedgNpzHCbhtBtorsVXA";
@@ -42,7 +42,7 @@ const Placeholder = () => {
           return setURL(prevUrl => data[0].url);
         })
         .catch(err => console.log(err));
-    } else {
+    } else if (!dateOfAPOD) {
       axios
         .get(APODurl)
         .then(({ data }) => {
