@@ -7,7 +7,8 @@ import NASAdesc from "../NASAdescription/NASAdesc";
 import ReactLoading from "react-loading";
 // styles
 import style from "./Placeholder.module.css";
-import DimmerComponent from "../Misc/DimmerComponent";
+import SearchButtons from "../SearchButtons/SearchButtons";
+import TitleText from "../Header/TitleText";
 
 const Placeholder = () => {
   const [url, setURL] = useState("");
@@ -18,35 +19,51 @@ const Placeholder = () => {
   useEffect(() => {
     getNASAdata();
     document.title = "NASA STUFF";
-  }, [mediaType]);
+  }, []);
 
-  const getNASAdata = () => {
-    axios
-      .get(
-        "https://api.nasa.gov/planetary/apod?api_key=6PVgasbJQ3KR2UdWAoAPfedgNpzHCbhtBtorsVXA"
-      )
-      .then(({ data }) => {
-        if (data.media_type === "video") {
-          setMediaType(prevType => "video");
-        } else if (data.media_type === "image") {
-          setMediaType(prevType => "image");
-        }
-        setTitle(prevTitle => data.title);
-        setDescription(prevDesc => data.explanation);
-        return setURL(prevUrl => data.url);
-      })
-      .catch(err => console.log(err));
+  const APODurl =
+    "https://api.nasa.gov/planetary/apod?api_key=6PVgasbJQ3KR2UdWAoAPfedgNpzHCbhtBtorsVXA";
+
+  const getNASAdata = date => {
+    if (date) {
+      axios
+        .get(
+          `${APODurl}&start_date=${date.toString()}&end_date=${date.toString()}`
+        )
+        .then(({ data }) => {
+          if (data[0].media_type === "video") {
+            setMediaType(prevType => "video");
+          } else if (data[0].media_type === "image") {
+            setMediaType(prevType => "image");
+          }
+          setTitle(prevTitle => data[0].title);
+          setDescription(prevDesc => data[0].explanation);
+          return setURL(prevUrl => data[0].url);
+        })
+        .catch(err => console.log(err));
+    } else {
+      axios
+        .get(APODurl)
+        .then(({ data }) => {
+          if (data.media_type === "video") {
+            setMediaType(prevType => "video");
+          } else if (data.media_type === "image") {
+            setMediaType(prevType => "image");
+          }
+          setTitle(prevTitle => data.title);
+          setDescription(prevDesc => data.explanation);
+          return setURL(prevUrl => data.url);
+        })
+        .catch(err => console.log(err));
+    }
   };
   if (title) {
     return (
       <div className={style.placeholderContainer}>
-        <DimmerComponent />
         <PhotoBody url={url} mediaType={mediaType} />
-        <NASAdesc
-          title={title}
-          description={description}
-          mediaType={mediaType}
-        />
+        <TitleText title={title} />
+        <SearchButtons getNASAData={getNASAdata} />
+        <NASAdesc description={description} mediaType={mediaType} />
       </div>
     );
   } else {
