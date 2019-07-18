@@ -1,0 +1,9 @@
+.titleContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  color: white;
+  padding: 0 40px;
+  margin: 20px auto 10px auto;
+  background-color: black;
+}
