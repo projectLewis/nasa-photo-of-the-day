@@ -15,11 +15,12 @@ const Placeholder = () => {
   const [mediaType, setMediaType] = useState("");
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState("");
+  const [dateOfAPOD, setDateOfAPOD] = useState(null);
 
   useEffect(() => {
     getNASAdata();
-    document.title = "NASA STUFF";
-  }, []);
+    document.title = dateOfAPOD ? dateOfAPOD : "SPACE is AWESOME";
+  }, [dateOfAPOD]);
 
   const APODurl =
     "https://api.nasa.gov/planetary/apod?api_key=6PVgasbJQ3KR2UdWAoAPfedgNpzHCbhtBtorsVXA";
@@ -62,7 +63,10 @@ const Placeholder = () => {
       <div className={style.placeholderContainer}>
         <PhotoBody url={url} mediaType={mediaType} />
         <TitleText title={title} />
-        <SearchButtons getNASAdata={getNASAdata} />
+        <SearchButtons
+          getNASAdata={getNASAdata}
+          setDateOfAPOD={setDateOfAPOD}
+        />
         <NASAdesc description={description} mediaType={mediaType} />
       </div>
     );

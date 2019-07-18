@@ -5,27 +5,27 @@ import style from "./SearchButtons.module.css";
 
 let counter = 0;
 
-const SearchButtons = ({ getNASAdata }) => {
+const SearchButtons = ({ getNASAdata, setDateOfAPOD }) => {
   const handlePrevious = () => {
-    console.log("left1 " + counter);
     counter -= 1;
     const now = new Date();
     const yesterday = date.addDays(now, counter);
-    const dateFormatted = date.format(yesterday, "YYYY-MM-DD");
-    getNASAdata(dateFormatted);
-    console.log("left2 " + counter);
+    const dateForAPOD = date.format(yesterday, "YYYY-MM-DD");
+    getNASAdata(dateForAPOD);
+    const dateForTitle = date.format(yesterday, "DD MMM YYYY");
+    setDateOfAPOD(prevDate => dateForTitle);
   };
   const handleNext = () => {
-    console.log("right" + counter);
     counter += 1;
     const now = new Date();
     const yesterday = date.addDays(now, counter);
-    const dateFormatted = date.format(yesterday, "YYYY-MM-DD");
-    getNASAdata(dateFormatted);
+    const dateForAPOD = date.format(yesterday, "YYYY-MM-DD");
+    getNASAdata(dateForAPOD);
+    const dateForTitle = date.format(yesterday, "DD MMM YYYY");
+    setDateOfAPOD(prevDate => dateForTitle);
     if (counter > 0) {
       counter = 0;
     }
-    console.log("right" + counter);
   };
 
   return (
