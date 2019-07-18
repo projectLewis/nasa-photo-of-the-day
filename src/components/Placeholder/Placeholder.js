@@ -20,7 +20,10 @@ const Placeholder = () => {
   useEffect(() => {
     getNASAdata();
     document.title = dateOfAPOD ? dateOfAPOD : "SPACE is AWESOME";
-  }, [dateOfAPOD]);
+    if (title) {
+      document.getElementById("defaultLoader").style.display = "none";
+    }
+  }, [dateOfAPOD, title]);
 
   const APODurl =
     "https://api.nasa.gov/planetary/apod?api_key=6PVgasbJQ3KR2UdWAoAPfedgNpzHCbhtBtorsVXA";
