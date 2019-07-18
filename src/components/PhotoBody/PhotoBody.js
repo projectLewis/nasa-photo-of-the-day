@@ -1,11 +1,17 @@
 import React from "react";
 // styling
 import style from "./PhotoBody.module.css";
-import { Image } from "semantic-ui-react";
 // outside helpers
 import ReactPlayer from "react-player";
 
 const PhotoBody = ({ mediaType, url, title }) => {
+  if (mediaType === "image") {
+    return (
+      <div>
+        <img className={style.NASAimage} src={url} alt={title} />
+      </div>
+    );
+  }
   if (mediaType === "video") {
     return (
       <div className={style.playerWrapper}>
@@ -15,12 +21,6 @@ const PhotoBody = ({ mediaType, url, title }) => {
           width="100%"
           height="100%"
         />
-      </div>
-    );
-  } else if (mediaType === "image") {
-    return (
-      <div className={style.NASAimage}>
-        <Image src={url} alt={title} fluid />
       </div>
     );
   }
